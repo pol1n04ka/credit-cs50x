@@ -15,7 +15,7 @@ int GetChecksum(long number);                  // TODO
 
 int main(void)
 {
-  long visaNumberTest = 370360000000031;
+  long visaNumberTest = 373600000000314;
 
   int isValid = CheckNumberFirstDigits(visaNumberTest);
 
@@ -52,20 +52,18 @@ int CheckNumberFirstDigits(long number)
 {
   int cardType = 0;
   int length = GetNumberLength(number);
-  int firstDigit;
-  int secondDigit;
+  int firstDigit = GetNDigit(number, length - 1);
+  int secondDigit = GetNDigit(number, length - 2);
 
-  if (length == 16) // visa or mc
+  if (length == 16 || length == 13) // visa or mc
   {
-    firstDigit = GetNDigit(number, 15);
-    secondDigit = GetNDigit(number, 14);
     if (firstDigit == 4)
     {
       return 1;
     }
     else if (firstDigit == 5)
     {
-      if (secondDigit == 1 || secondDigit == 2 || secondDigit == 3 || secondDigit == 4 || secondDigit == 5)
+      if (secondDigit >= 1 && secondDigit <= 5)
       {
         return 2;
       }
@@ -81,35 +79,9 @@ int CheckNumberFirstDigits(long number)
   }
   else if (length == 15) // amex
   {
-    firstDigit = GetNDigit(number, 14);
-    secondDigit = GetNDigit(number, 13);
     if (firstDigit == 3 && (secondDigit == 4 || secondDigit == 7))
     {
       return 3;
-    }
-    else
-    {
-      return 0;
-    }
-  }
-  else if (length == 13) // visa or mc
-  {
-    firstDigit = GetNDigit(number, 12);
-    secondDigit = GetNDigit(number, 11);
-    if (firstDigit == 4)
-    {
-      return 1;
-    }
-    else if (firstDigit == 5)
-    {
-      if (secondDigit == 1 || secondDigit == 2 || secondDigit == 3 || secondDigit == 4 || secondDigit == 5)
-      {
-        return 2;
-      }
-      else
-      {
-        return 0;
-      }
     }
     else
     {
