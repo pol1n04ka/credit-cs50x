@@ -1,5 +1,9 @@
 # Credit  
 
+This is program for problem set 1 in cs50x course.  
+
+The point is to implement Luhn's algorithm for credit card verification.  
+
 ## Card lengths and starting numbers  
 
 We'll consider that:
